@@ -14,7 +14,10 @@ def load_api_key(env_path):
 if __name__ == '__main__':
     current_dir = os.getcwd()
     env_path = current_dir + '/.env'
-    immich_go_path = current_dir + '/immich-go'
+    if sys.platform == 'linux' or sys.platform == 'linux2':
+        immich_go_path = current_dir + '/immich-go'
+    elif sys.platform == 'win32':
+        immich_go_path = current_dir + '/immich-go.exe'
 
     load_api_key(env_path)
     api_key = os.getenv("IMMICH_API_KEY")
